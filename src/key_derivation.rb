@@ -12,7 +12,7 @@ KeyDerivation = Class.new do
     key = OpenSSL::PKCS5::pbkdf2_hmac_sha1(passwd, salt, iter, length.to_i)
     key = Base64.encode64(key)
     salt = Base64.encode64(salt)
-    js = {:k=>key,:s=>salt}.to_json
+    js = {:k=>key,:s=>salt,:iterations=>iter,:size=>length}.to_json
     return js
   end
   def writeIt(z, path)

@@ -11,7 +11,17 @@ chmod +x main.rb;
 
 ## key_derivation.rb
 
+### CLI
+
 ```
 chmod +X key_derivation.rb;
 ./key_derivation.rb password key_size
+```
+
+### Code
+
+```ruby
+require "./key_derivation.rb"
+dk = KeyDerivation.new
+key = dk.kdf("password", 256)
 ```
