@@ -21,3 +21,9 @@ KeyDerivation = Class.new do
     f.close
   end
 end
+
+if !ARGV.empty?
+  dk = KeyDerivation.new
+  de = dk.kdf(ARGV[0], ARGV[1])
+  dk.writeIt(de, "key.json")
+end
