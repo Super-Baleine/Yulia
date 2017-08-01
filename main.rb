@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 
 require "./src/key_derivation.rb"
+require "./src/enc.rb"
 
 def choice
   puts "1) Get a key\n2) Encrypt something\n3) Decrypt something\n"
@@ -26,7 +27,14 @@ def choice
       pth = ARGV[2]+"/key.txt"
       dk.writeIt(key, pth)
     end
-  end
+  when 2
+    f = open("./src/key.json", "r")
+    js = f.read
+    js = JSON.parse(js)
+    dk = Base64.decode64(js['k'])
+    yulia = Yulia.new
+    cipherText = yulia.enc(dk, "es")
+    end
 end
 
 choice()
