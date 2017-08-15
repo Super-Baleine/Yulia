@@ -17,9 +17,7 @@ def choice
       key = dk.kdf(passwd, key_size)
       puts "Where do you want to get your key?"
       pth = STDIN.gets.chomp
-      if pth.empty?
-        pth = "key.json"
-      end
+      pth = "key.json" unless pth
       dk.writeIt(key, pth)
     else
       dk = KeyDerivation.new
